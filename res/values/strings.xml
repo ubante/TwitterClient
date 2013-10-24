@@ -7,5 +7,12 @@
     <string name="title_activity_photos">Flickr Photos</string>
     <string name="login_label">Log in</string>
     <string name="title_activity_timeline">TimelineActivity</string>
+    <string name="tweet_item">tweet item</string>
+    <string name="title_activity_compose">ComposeActivity</string>
+    <string name="action_compose">Compose</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="button_tweet">Tweet!</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="hint_enterTweet">Enter your tweet here</string> 
 
 </resources>
