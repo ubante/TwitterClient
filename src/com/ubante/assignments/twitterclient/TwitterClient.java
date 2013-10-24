@@ -37,7 +37,8 @@ public class TwitterClient extends OAuthBaseClient {
     public static final String REST_CALLBACK_URL = "oauth://com.ubante.assignments.twitterclient"; 
     
     public TwitterClient(Context context) {
-        super(context, REST_API_CLASS, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET, REST_CALLBACK_URL);
+        super(context, REST_API_CLASS, REST_URL, REST_CONSUMER_KEY, REST_CONSUMER_SECRET, 
+        		REST_CALLBACK_URL);
     }
     
     public void getHomeTimeline20(AsyncHttpResponseHandler handler) {
@@ -56,8 +57,7 @@ public class TwitterClient extends OAuthBaseClient {
     	String url = getApiUrl("statuses/update.json");
     	RequestParams p = new RequestParams();
     	p.put("status", tweetString);
-    	client.post(url, p, handler);
-    	
+    	//client.post(url, p, handler);   	
     }
 
 }

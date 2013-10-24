@@ -47,15 +47,22 @@ public class ComposeActivity extends Activity {
 	
 	public void onSubmitTweet(View v) {
 		Toast.makeText(this, "Tweeting", Toast.LENGTH_LONG).show();
-		TwitterApp.getRestClient().postStatusUpdate(etTweet.getText().toString(), new JsonHttpResponseHandler() {
+		TwitterApp.getRestClient().postStatusUpdate(etTweet.getText().toString(), 
+				new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONArray jsonTweets) {
-				returnToTimeline();
+				//returnToTimeline();
+				//ComposeActivity.this.finish();
+				setResult(RESULT_OK);
+				ComposeActivity.this.finish();
+				// can't finish ?
+				//finish();
 			}
 			
 			@Override
 			public void onFailure(Throwable t, JSONObject response) {
 				Log.e("ERROR", "Failed to post tweet", t);
+				Toast.makeText(ComposeActivity.this, "Failed to tweet", Toast.LENGTH_LONG).show();
 			}
 		});
 		
