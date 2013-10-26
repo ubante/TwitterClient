@@ -4,24 +4,23 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.ubante.assignments.twitterclient.fragments.TweetsListFragment;
 import com.ubante.assignments.twitterclient.models.Tweet;
-//import android.support.v4.app.ActionBarDrawerToggle;
 
 /*
  * This is the activity that follows the Login activity.
  */
-public class TimelineActivity extends Activity {
+public class TimelineActivity extends FragmentActivity {
+	TweetsListFragment fragmentTweets;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +28,6 @@ public class TimelineActivity extends Activity {
 		setContentView(R.layout.activity_timeline);
 		refreshTimeline();	
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,15 +62,23 @@ public class TimelineActivity extends Activity {
 	
 	// When the user hits the refresh icon in the action bar.
 	public void refreshTimeline() {
+		fragmentTweets = 
+				(TweetsListFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentTweets);
+				
 		TwitterApp.getRestClient().getHomeTimeline(new JsonHttpResponseHandler() {
 			@Override
 			public void onSuccess(JSONArray jsonTweets) {
+				ArrayList<Tweet> tweets = Tweet.fromJson(jsonTweets);
+				fragmentTweets.getAdapter().addAll(tweets);
+			}
+			
+/*			public void onSuccess(JSONArray jsonTweets) {
 				ArrayList<Tweet> tweets = Tweet.fromJson(jsonTweets);
 				Log.d("DEBUG", jsonTweets.toString());
 				ListView lvTweets = (ListView) findViewById(R.id.lvTweets);
 				TweetsAdapter adapter = new TweetsAdapter(getBaseContext(), tweets);
 				lvTweets.setAdapter(adapter);
-			}
+			}*/
 		});	
 	}
 
