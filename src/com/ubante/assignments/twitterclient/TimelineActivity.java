@@ -11,7 +11,6 @@ import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.ubante.assignments.twitterclient.fragments.HomeTimelineFragment;
 import com.ubante.assignments.twitterclient.fragments.MentionsFragment;
@@ -59,13 +58,12 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 	public boolean onOptionsItemSelected(MenuItem item) {
 	    // Handle presses on the action bar items
 	    switch (item.getItemId()) {
-	        case R.id.action_refresh:
-	    		Toast.makeText(this, "Refreshing timeline", Toast.LENGTH_LONG).show();
-	            refreshTimeline();
-	            return true;
 	        case R.id.action_compose:
 	            composeTweet();
 	            return true;
+	        case R.id.action_profile:
+	        	displayProfile();
+	        	return true;
 	        default:
 	            return super.onOptionsItemSelected(item);
 	    }
@@ -100,6 +98,11 @@ public class TimelineActivity extends FragmentActivity implements TabListener {
 */		
 	}
 
+	// When the user hits the profile icon in the action bar.
+	public void displayProfile() {
+		Intent i = new Intent(this, ProfileActivity.class);
+		startActivity(i);		
+	}
 	@Override
 	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 		

@@ -4,31 +4,35 @@ import org.json.JSONObject;
 
 public class User extends BaseModel {
 
-	public String getName(){
+	public String getName() {
 		return getString("name");
 	}
 	public String getScreenName() {
 		return getString("screen_name");
 	}
 	
-	public String getProfileImageUrl(){
+	public String getProfileImageUrl() {
 		return getString("profile_image_url");
 	}
 	
-	public String getProfileBackgroundImageUrl(){
+	public String getProfileBackgroundImageUrl() {
 		return getString("profile_background_image_url");
 	}
 	
-	public int getNumTweets(){
+	public int getNumTweets() {
 		return getInt("statuses_count");
 	}
 	
-	public int getFollowersCount(){
+	public int getFollowersCount() {
 		return getInt("followers_count");
 	}
 	
-	public int getFriendsCount(){
+	public int getFriendsCount() {
 		return getInt("friends_count");
+	}
+	
+	public String getTagline() {
+		return getString("description");
 	}
 	
 	public static User fromJson(JSONObject json){

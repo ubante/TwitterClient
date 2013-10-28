@@ -53,8 +53,13 @@ public class TwitterClient extends OAuthBaseClient {
     	client.get(url, p, handler);
     }
     
-    public void getMentions(AsyncHttpResponseHandler handler) {
+    public void getMentionsTimeline(AsyncHttpResponseHandler handler) {
     	String url = getApiUrl("statuses/mentions_timeline.json");
+    	client.get(url, null, handler);
+    }
+    
+    public void getUserTimeline(AsyncHttpResponseHandler handler) {
+    	String url = getApiUrl("statuses/user_timeline.json");
     	client.get(url, null, handler);
     }
     
@@ -63,6 +68,11 @@ public class TwitterClient extends OAuthBaseClient {
     	RequestParams p = new RequestParams();
     	p.put("status", tweetString);
     	client.post(url, p, handler);   	
+    }
+    
+    public void getMyInfo(AsyncHttpResponseHandler handler) {
+    	String url = getApiUrl("account/verify_credentials.json");
+    	client.get(url, null, handler);
     }
 
 }
